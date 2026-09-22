@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0d12" />
+  <meta name="description" content="Личен сайт на Пламен Петков — дигитални продукти, услуги и нови идеи." />
+  <title>Пламен Петков | Digital Studio</title>
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --bg2:#11151d;
+      --card:rgba(255,255,255,.055);
+      --card2:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.11);
+      --text:#f5f7fb;
+      --muted:#aab2c0;
+      --accent:#7c5cff;
+      --accent2:#2ed3a7;
+      --shadow:0 24px 80px rgba(0,0,0,.35);
+      --radius:24px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(124,92,255,.17), transparent 34%),
+        radial-gradient(circle at 90% 20%, rgba(46,211,167,.12), transparent 26%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1120px, calc(100% - 38px));margin:auto}
+
+    nav{
+      position:sticky;top:0;z-index:20;
+      backdrop-filter:blur(18px);
+      background:rgba(11,13,18,.72);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .nav-inner{
+      min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+    }
+    .brand{font-weight:800;letter-spacing:.08em}
+    .brand span{color:var(--accent2)}
+    .nav-links{display:flex;gap:22px;color:var(--muted);font-size:14px}
+    .nav-links a:hover{color:var(--text)}
+
+    .hero{
+      min-height:78vh;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      align-items:center;
+      gap:52px;
+      padding:86px 0 70px;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      padding:8px 12px;border:1px solid var(--line);border-radius:999px;
+      background:rgba(255,255,255,.04);color:#c8ced9;font-size:13px;
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 18px var(--accent2)}
+    h1{
+      margin:22px 0 20px;
+      font-size:clamp(46px,8vw,92px);
+      line-height:.96;
+      letter-spacing:-.055em;
+      max-width:850px;
+    }
+    .grad{
+      background:linear-gradient(110deg,#fff 5%,#b6a8ff 43%,#57e6c0 95%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero p{
+      max-width:700px;color:var(--muted);font-size:clamp(17px,2vw,20px);margin:0 0 30px
+    }
+    .actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      min-height:50px;padding:0 19px;border-radius:14px;
+      font-weight:750;border:1px solid var(--line);
+      transition:.2s ease;cursor:pointer;
+    }
+    .btn.primary{
+      color:#0b0d12;background:linear-gradient(135deg,#9d8cff,#55e6be);
+      border-color:transparent;
+    }
+    .btn.secondary{background:rgba(255,255,255,.045)}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+
+    .hero-card{
+      border:1px solid var(--line);border-radius:32px;padding:24px;
+      background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
+      box-shadow:var(--shadow);position:relative;overflow:hidden;
+    }
+    .hero-card:before{
+      content:"";position:absolute;width:240px;height:240px;border-radius:50%;
+      background:rgba(124,92,255,.24);filter:blur(60px);right:-80px;top:-80px;
+    }
+    .mini{position:relative;display:grid;gap:14px}
+    .mini-card{
+      background:rgba(9,11,16,.72);border:1px solid var(--line);
+      border-radius:18px;padding:18px;
+    }
+    .mini-card small{color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+    .mini-card strong{display:block;font-size:20px;margin-top:5px}
+    .statline{display:flex;align-items:center;justify-content:space-between;margin-top:8px;color:var(--muted)}
+    .pill{font-size:12px;padding:5px 9px;border-radius:999px;background:rgba(46,211,167,.12);color:#83f2d4}
+
+    section{padding:88px 0}
+    .section-head{max-width:720px;margin-bottom:34px}
+    .kicker{font-size:13px;color:#9f91ff;text-transform:uppercase;letter-spacing:.16em;font-weight:800}
+    h2{font-size:clamp(34px,5vw,58px);line-height:1.04;letter-spacing:-.04em;margin:10px 0 14px}
+    .section-head p{color:var(--muted);font-size:18px}
+
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{
+      min-height:360px;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:linear-gradient(165deg,var(--card2),var(--card));
+      padding:30px;position:relative;overflow:hidden;
+    }
+    .card .num{font-size:13px;color:var(--muted);letter-spacing:.14em}
+    .card h3{font-size:30px;margin:24px 0 12px;letter-spacing:-.03em}
+    .card p{color:var(--muted)}
+    .features{list-style:none;padding:0;margin:25px 0 28px;display:grid;gap:10px}
+    .features li{display:flex;gap:10px;align-items:flex-start}
+    .check{color:var(--accent2);font-weight:900}
+    .price{font-size:34px;font-weight:850;margin:12px 0 20px}
+    .price small{font-size:14px;color:var(--muted);font-weight:500}
+
+    .about{
+      display:grid;grid-template-columns:.8fr 1.2fr;gap:24px;align-items:stretch
+    }
+    .portrait{
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:
+        radial-gradient(circle at 65% 20%,rgba(46,211,167,.18),transparent 28%),
+        radial-gradient(circle at 25% 70%,rgba(124,92,255,.22),transparent 32%),
+        #10141b;
+      min-height:390px;display:flex;align-items:flex-end;padding:30px;
+    }
+    .monogram{
+      font-size:clamp(86px,15vw,170px);font-weight:900;letter-spacing:-.08em;
+      color:rgba(255,255,255,.08);line-height:.75
+    }
+    .about-copy{
+      border:1px solid var(--line);border-radius:var(--radius);padding:34px;
+      background:rgba(255,255,255,.035)
+    }
+    .about-copy p{color:var(--muted);font-size:18px}
+    .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .tag{border:1px solid var(--line);padding:8px 11px;border-radius:999px;color:#cbd2dd;font-size:13px}
+
+    .cta{
+      text-align:center;border:1px solid var(--line);border-radius:32px;
+      padding:64px 24px;
+      background:
+        radial-gradient(circle at 50% 0%,rgba(124,92,255,.20),transparent 42%),
+        rgba(255,255,255,.035);
+    }
+    .cta p{color:var(--muted);max-width:660px;margin:0 auto 26px;font-size:18px}
+
+    footer{padding:38px 0 46px;color:var(--muted);font-size:14px}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:28px}
+
+    .reveal{opacity:0;transform:translateY(18px);transition:.65s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    @media(max-width:800px){
+      .nav-links{display:none}
+      .hero{grid-template-columns:1fr;min-height:auto;padding-top:65px}
+      .hero-card{margin-top:5px}
+      .grid,.about{grid-template-columns:1fr}
+      section{padding:67px 0}
+      .footer-inner{flex-direction:column}
+      .card{min-height:unset}
+    }
+  </style>
+</head>
+
+<body>
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">PLAMEN<span>.</span></a>
+    <div class="nav-links">
+      <a href="#work">Какво правя</a>
+      <a href="#about">За мен</a>
+      <a href="#contact">Контакт</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> личен дигитален проект</div>
+      <h1><span class="grad">Идеи, превърнати в нещо реално.</span></h1>
+      <p>
+        Създавам дигитални продукти, малки онлайн решения и услуги,
+        които имат ясна цел: да спестят време, да решат конкретен проблем
+        или да превърнат добра идея в работещ проект.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#work">Разгледай проектите →</a>
+        <a class="btn secondary" href="#contact">Свържи се с мен</a>
+      </div>
+    </div>
+
+    <aside class="hero-card reveal">
+      <div class="mini">
+        <div class="mini-card">
+          <small>Дигитален продукт</small>
+          <strong>Idea Launch Kit</strong>
+          <div class="statline"><span>от идея до първа версия</span><span class="pill">DEMO</span></div>
+        </div>
+        <div class="mini-card">
+          <small>Услуга</small>
+          <strong>Research → Build</strong>
+          <div class="statline"><span>проучване и изграждане</span><span class="pill">OPEN</span></div>
+        </div>
+        <div class="mini-card">
+          <small>Фокус</small>
+          <strong>Просто. Полезно. Използваемо.</strong>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Какво предлагам</div>
+        <h2>Два начина да работим.</h2>
+        <p>Тази версия е демонстрационна. По-късно тук можем да сложим истински продукт, реална цена, плащане и форма за поръчка.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card reveal">
+          <div class="num">01 / DIGITAL PRODUCT</div>
+          <h3>Idea Launch Kit</h3>
+          <p>Структуриран инструмент за превръщане на сурова идея в ясна оферта и тестова версия на продукт.</p>
+          <ul class="features">
+            <li><span class="check">✓</span><span>матрица за избор на идея</span></li>
+            <li><span class="check">✓</span><span>структура на офертата</span></li>
+            <li><span class="check">✓</span><span>план за MVP и първи тест</span></li>
+          </ul>
+          <div class="price">€19 <small>/ еднократно</small></div>
+          <a class="btn primary" href="#contact">Искам продукта</a>
+        </article>
+
+        <article class="card reveal">
+          <div class="num">02 / SERVICE</div>
+          <h3>Research → Build</h3>
+          <p>Получаваш кратко проучване, ясна посока и изработена първа версия вместо куп идеи без изпълнение.</p>
+          <ul class="features">
+            <li><span class="check">✓</span><span>пазарно и конкурентно проучване</span></li>
+            <li><span class="check">✓</span><span>позициониране и структура</span></li>
+            <li><span class="check">✓</span><span>изграждане на тестова версия</span></li>
+          </ul>
+          <div class="price">от €49 <small>/ проект</small></div>
+          <a class="btn secondary" href="#contact">Обсъди проект</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="about">
+        <div class="portrait reveal">
+          <div class="monogram">PP</div>
+        </div>
+        <div class="about-copy reveal">
+          <div class="kicker">За мен</div>
+          <h2>Пламен Петков</h2>
+          <p>
+            Харесвам проекти, при които има какво да се открие, изгради и тества.
+            Интересувам се от дигитални продукти, автоматизация, проучвания,
+            спортни данни и практични приложения на изкуствения интелект.
+          </p>
+          <p>
+            Този сайт е първи тест: една страница, един файл и реална възможност
+            да бъде публикуван безплатно в интернет.
+          </p>
+          <div class="tags">
+            <span class="tag">Digital Products</span>
+            <span class="tag">Research</span>
+            <span class="tag">AI Tools</span>
+            <span class="tag">Experiments</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="cta reveal">
+        <div class="kicker">Следващата стъпка</div>
+        <h2>Имаш идея? Нека ѝ дадем форма.</h2>
+        <p>
+          В истинска версия тук можем да добавим контактна форма,
+          WhatsApp, Instagram, имейл, плащане с PayPal или checkout за дигитален продукт.
+        </p>
+        <div class="actions" style="justify-content:center">
+          <a class="btn primary" href="https://github.com/planenp993" target="_blank" rel="noreferrer">GitHub профил</a>
+          <a class="btn secondary" href="#top">Към началото ↑</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> Plamen Petkov</span>
+    <span>Built as a one-page experiment.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('show');
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
