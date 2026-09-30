@@ -134,6 +134,10 @@
     return product.copy[state.lang] || product.copy.en;
   }
 
+  function productRoute(product) {
+    return `${encodeURIComponent(product.id)}/`;
+  }
+
   function renderFeatured() {
     const products = window.PBM_PRODUCTS || [];
     const product = products.find(p => p.featured) || products[0];
@@ -145,7 +149,7 @@
     $$('[data-product-price]').forEach(el => el.textContent = formatPrice(product));
     $$('[data-product-image-main]').forEach(el => { el.src = product.images[0]; el.alt = `${c.name} main interface`; });
     $$('[data-product-image-second]').forEach(el => { el.src = product.images[1] || product.images[0]; el.alt = `${c.name} secondary interface`; });
-    const link = `product.html?id=${encodeURIComponent(product.id)}`;
+    const link = productRoute(product);
     $$('[data-product-link]').forEach(el => el.setAttribute('href', link));
     const list = $('#feature-includes');
     if (list) {
@@ -163,7 +167,7 @@
     container.hidden = false;
     container.innerHTML = `<div class="catalog-more-head"><h3>${escapeHtml(t('moreProducts'))}</h3></div><div class="product-grid">${others.map(p => {
       const c = productCopy(p);
-      return `<a class="product-card" href="product.html?id=${encodeURIComponent(p.id)}"><div class="product-card-art"><img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(c.name)} preview"></div><div class="product-card-body"><div><span>${escapeHtml(c.eyebrow)}</span><h4>${escapeHtml(c.name)}</h4><p>${escapeHtml(c.subtitle)}</p></div><strong>${escapeHtml(formatPrice(p))}</strong></div></a>`;
+      return `<a class="product-card" href="${productRoute(p)}"><div class="product-card-art"><img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(c.name)} preview"></div><div class="product-card-body"><div><span>${escapeHtml(c.eyebrow)}</span><h4>${escapeHtml(c.name)}</h4><p>${escapeHtml(c.subtitle)}</p></div><strong>${escapeHtml(formatPrice(p))}</strong></div></a>`;
     }).join('')}</div>`;
   }
 
@@ -172,8 +176,77 @@
   }
 
   function getProductFromUrl() {
-    const id = new URLSearchParams(location.search).get('id') || 'matchpulse-10';
-    return (window.PBM_PRODUCTS || []).find(p => p.id === id) || (window.PBM_PRODUCTS || [])[0];
+    const products = window.PBM_PRODUCTS || [];
+    const queryId = new URLSearchParams(location.search).get('id');
+    const bodyId = document.body?.dataset.productId;
+    const pathId = decodeURIComponent(location.pathname.split('/').filter(Boolean).pop() || '');
+    const id = queryId || bodyId || (products.some(p => p.id === pathId) ? pathId : '') || 'matchpulse-10';
+    return products.find(p => p.id === id) || products[0];
+  }
+
+  function renderShowcase(p, c) {
+    const grid = $('#showcase-grid');
+    if (!grid) return;
+    const images = p.showcaseImages || [];
+    const copy = c.showcase || [];
+    grid.innerHTML = images.map((src, i) => {
+      const item = copy[i] || ['', ''];
+      return `
+        <button class="showcase-card showcase-card-${i+1}" type="button"
+          data-lightbox-src="${escapeHtml(src)}"
+          data-lightbox-title="${escapeHtml(item[0])}"
+          data-lightbox-text="${escapeHtml(item[1])}">
+          <span class="showcase-visual"><img src="${escapeHtml(src)}" alt="${escapeHtml(item[0])}"></span>
+          <span class="showcase-caption"><strong>${escapeHtml(item[0])}</strong><span>${escapeHtml(item[1])}</span></span>
+          <span class="showcase-expand" aria-hidden="true">↗</span>
+        </button>`;
+    }).join('');
+
+    const se = $('#showcase-eyebrow'); if (se) se.textContent = c.showcaseEyebrow || 'SEE IT IN ACTION';
+    const st = $('#showcase-title'); if (st) st.textContent = c.showcaseTitle || c.name;
+    const si = $('#showcase-intro'); if (si) si.textContent = c.showcaseIntro || '';
+    const sh = $('#showcase-hint'); if (sh) sh.textContent = c.showcaseHint || '';
+
+    const be = $('#bundle-eyebrow'); if (be) be.textContent = c.bundleEyebrow || '';
+    const bt = $('#bundle-title'); if (bt) bt.textContent = c.bundleTitle || '';
+    const bx = $('#bundle-text'); if (bx) bx.textContent = c.bundleText || '';
+    const tags = $('#bundle-tags');
+    if (tags) tags.innerHTML = (c.bundleTags || []).map(v => `<span>${escapeHtml(v)}</span>`).join('');
+
+    const bv = $('#bundle-visual');
+    if (bv) {
+      bv.innerHTML = `
+        <div class="bundle-device bundle-device-main"><img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(c.name)} main app"></div>
+        <div class="bundle-device bundle-device-tracker"><img src="${escapeHtml(p.images[1])}" alt="${escapeHtml(c.name)} Tracker"></div>
+        <div class="bundle-guide-card"><img src="${escapeHtml(p.images[2])}" alt="${escapeHtml(t('productGalleryGuide'))}"></div>
+        <div class="bundle-stamp"><b>${escapeHtml(c.name)}</b><span>${escapeHtml(formatPrice(p))} · ${escapeHtml(t('productOneTime'))}</span></div>`;
+    }
+
+    const lightbox = $('#image-lightbox');
+    const lightboxImage = $('#lightbox-image');
+    const lightboxTitle = $('#lightbox-title');
+    const lightboxText = $('#lightbox-text');
+    const close = $('#lightbox-close');
+    if (!lightbox || !lightboxImage || !close) return;
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
+    };
+    $$('.showcase-card').forEach(card => card.addEventListener('click', () => {
+      lightboxImage.src = card.dataset.lightboxSrc;
+      lightboxImage.alt = card.dataset.lightboxTitle;
+      lightboxTitle.textContent = card.dataset.lightboxTitle;
+      lightboxText.textContent = card.dataset.lightboxText;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+      close.focus();
+    }));
+    close.onclick = closeLightbox;
+    lightbox.onclick = (e) => { if (e.target === lightbox) closeLightbox(); };
+    document.onkeydown = (e) => { if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox(); };
   }
 
   function renderProductPage() {
@@ -216,27 +289,7 @@
     faq.innerHTML = c.faq.map(([q, a], i) => `
       <details class="faq-item" ${i === 0 ? 'open' : ''}><summary>${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join('');
 
-    const gallery = [
-      [p.images[0], t('productGalleryMain'), 'app'],
-      [p.images[1], t('productGalleryTracker'), 'app'],
-      [p.images[2], t('productGalleryGuide'), 'guide']
-    ];
-    $('#product-gallery-thumbs').innerHTML = gallery.map(([src, label, type], i) => `
-      <button class="gallery-thumb ${i===0?'active':''}" data-gallery-src="${escapeHtml(src)}" data-gallery-label="${escapeHtml(label)}" data-gallery-type="${type}" aria-label="${escapeHtml(label)}">
-        <img src="${escapeHtml(src)}" alt="${escapeHtml(label)} preview">
-        <span>${escapeHtml(label)}</span>
-      </button>`).join('');
-    const mainImg = $('#product-gallery-main');
-    mainImg.src = gallery[0][0];
-    mainImg.alt = gallery[0][1];
-    mainImg.className = 'app-preview';
-    $$('.gallery-thumb').forEach(btn => btn.addEventListener('click', () => {
-      $$('.gallery-thumb').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      mainImg.src = btn.dataset.gallerySrc;
-      mainImg.alt = btn.dataset.galleryLabel;
-      mainImg.className = btn.dataset.galleryType === 'guide' ? 'guide-preview' : 'app-preview';
-    }));
+    renderShowcase(p, c);
 
     const buy = $('#buy-button');
     buy.textContent = `${t('productBuy')} · ${formatPrice(p)}`;

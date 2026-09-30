@@ -12,6 +12,13 @@ window.PBM_PRODUCTS = [
       'matchpulse-tracker-preview.png',
       'matchpulse-guide.png'
     ],
+    showcaseImages: [
+      'matchpulse-inputs.png',
+      'matchpulse-probabilities.png',
+      'matchpulse-trends.png',
+      'matchpulse-markets.png',
+      'matchpulse-tracker-detail.png'
+    ],
     copy: {
       en: {
         name: 'MATCHPULSE 10',
@@ -19,6 +26,21 @@ window.PBM_PRODUCTS = [
         subtitle: 'Offline football analysis toolkit',
         short: 'Turn recent match results into readable probabilities, trends, goal markets and a trackable prediction history.',
         description: 'MATCHPULSE 10 is a compact, offline-first football analysis toolkit. Enter recent official match results, optionally add xG and corner data, and get a structured probability snapshot designed for clear interpretation rather than black-box promises.',
+        showcaseEyebrow: 'SEE IT IN ACTION',
+        showcaseTitle: 'See what MATCHPULSE actually does.',
+        showcaseIntro: 'Five real views from the toolkit. Click any preview to inspect it.',
+        showcaseHint: 'Real interface captures from the product. No decorative mockups.',
+        showcase: [
+          ['Recent form in, structure out', 'Enter the latest 5–10 official matches. Goals and venue are enough to start; xG and corners stay optional.'],
+          ['A readable probability snapshot', '1X2 probabilities, fair odds, expected goals and likely scorelines are grouped into one clear result view.'],
+          ['Trends & Form Pulse', 'The most relevant 3–5 match streaks sit beside a visual form line, so recurring patterns are easy to spot.'],
+          ['Markets kept in order', 'Goal lines, BTTS, double chance, clean sheets, data quality and the score matrix remain separated and readable.'],
+          ['Track what happened next', 'Save pre-match probabilities, settle the real outcome later and build a transparent history of the model’s calls.']
+        ],
+        bundleEyebrow: 'THE COMPLETE TOOLKIT',
+        bundleTitle: 'More than one screen.',
+        bundleText: 'The download combines the analysis app, Tracker, Field Guide, worksheet and full user manual in one practical package.',
+        bundleTags: ['Analysis app','Prediction Tracker','Field Guide','Worksheet','3 languages'],
         highlights: [
           '1X2 probabilities and fair odds',
           'Goal markets, BTTS and clean-sheet probabilities',
@@ -60,6 +82,21 @@ window.PBM_PRODUCTS = [
         subtitle: 'Offline-Toolkit für Fußballanalyse',
         short: 'Verwandle aktuelle Spielergebnisse in verständliche Wahrscheinlichkeiten, Trends, Tormärkte und eine nachverfolgbare Prognosehistorie.',
         description: 'MATCHPULSE 10 ist ein kompaktes, offline-first Toolkit für Fußballanalyse. Gib aktuelle Pflichtspielergebnisse ein, ergänze optional xG- und Eckballdaten und erhalte eine strukturierte Wahrscheinlichkeitsübersicht für klare Interpretation statt Black-Box-Versprechen.',
+        showcaseEyebrow: 'SO SIEHT ES IN AKTION AUS',
+        showcaseTitle: 'Sieh, was MATCHPULSE tatsächlich macht.',
+        showcaseIntro: 'Fünf echte Ansichten aus dem Toolkit. Klicke auf eine Vorschau, um sie größer zu sehen.',
+        showcaseHint: 'Echte Interface-Aufnahmen aus dem Produkt. Keine dekorativen Mockups.',
+        showcase: [
+          ['Aktuelle Form rein, Struktur raus', 'Die letzten 5–10 Pflichtspiele eingeben. Tore und Spielort reichen; xG und Ecken bleiben optional.'],
+          ['Eine klare Wahrscheinlichkeitsübersicht', '1X2-Wahrscheinlichkeiten, faire Quoten, erwartete Tore und wahrscheinliche Ergebnisse werden übersichtlich gebündelt.'],
+          ['Trends & Form-Pulse', 'Die wichtigsten Serien über 3–5 Spiele stehen neben einer visuellen Formkurve und machen wiederkehrende Muster schnell sichtbar.'],
+          ['Märkte sauber geordnet', 'Torlinien, Beide treffen, Doppelte Chance, Clean Sheets, Datenqualität und Ergebnismatrix bleiben klar getrennt.'],
+          ['Danach prüfen, was wirklich geschah', 'Vor dem Spiel Wahrscheinlichkeiten speichern, später das reale Ergebnis ergänzen und eine transparente Historie aufbauen.']
+        ],
+        bundleEyebrow: 'DAS KOMPLETTE TOOLKIT',
+        bundleTitle: 'Mehr als nur ein Bildschirm.',
+        bundleText: 'Der Download vereint Analyse-App, Tracker, Field Guide, Arbeitsblatt und vollständiges Benutzerhandbuch in einem praktischen Paket.',
+        bundleTags: ['Analyse-App','Prognose-Tracker','Field Guide','Arbeitsblatt','3 Sprachen'],
         highlights: [
           '1X2-Wahrscheinlichkeiten und faire Quoten',
           'Tormärkte, Beide treffen und Clean-Sheet-Wahrscheinlichkeiten',
@@ -101,6 +138,21 @@ window.PBM_PRODUCTS = [
         subtitle: 'Офлайн инструмент за футболен анализ',
         short: 'Превърни последните резултати в ясни вероятности, трендове, пазари за голове и проследима история на прогнозите.',
         description: 'MATCHPULSE 10 е компактен офлайн пакет за футболен анализ. Въвеждаш последните официални резултати, по желание добавяш xG и корнери и получаваш структурирана картина на вероятностите, създадена за ясно тълкуване, а не за обещания от типа „черна кутия“.',
+        showcaseEyebrow: 'ВИЖ ГО В ДЕЙСТВИЕ',
+        showcaseTitle: 'Виж какво реално прави MATCHPULSE.',
+        showcaseIntro: 'Пет реални изгледа от пакета. Натисни върху кадър, за да го разгледаш по-голям.',
+        showcaseHint: 'Реални кадри от интерфейса на продукта. Без декоративни mockup-и.',
+        showcase: [
+          ['От последната форма към ясен анализ', 'Въвеждаш последните 5–10 официални мача. Головете и теренът са достатъчни; xG и корнерите остават по желание.'],
+          ['Ясна картина на вероятностите', '1X2 вероятности, честни коефициенти, очаквани голове и вероятни резултати са събрани в един четим изглед.'],
+          ['Трендове и Пулс на формата', 'Най-важните серии от 3–5 мача стоят до визуалната линия на формата, за да се виждат повтарящите се модели.'],
+          ['Пазарите са подредени, не изсипани', 'Голови линии, BTTS, двоен шанс, сухи мрежи, качество на данните и матрицата са отделени и лесни за четене.'],
+          ['После проверяваш какво е станало', 'Запазваш вероятностите преди мача, отбелязваш реалния изход след края и изграждаш прозрачна история на прогнозите.']
+        ],
+        bundleEyebrow: 'ЦЕЛИЯТ TOOLKIT',
+        bundleTitle: 'Повече от един екран.',
+        bundleText: 'Сваленият пакет събира основното приложение, Tracker-а, Field Guide, работния лист и пълното ръководство на едно място.',
+        bundleTags: ['Основно приложение','Tracker','Field Guide','Работен лист','3 езика'],
         highlights: [
           'Вероятности 1X2 и честни коефициенти',
           'Пазари за голове, BTTS и сухи мрежи',
